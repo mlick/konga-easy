@@ -8,6 +8,14 @@
     "Kong",
     "GUI"
   ],
+  "scripts": {
+    "postinstall": "bower --allow-root install",
+    "start": "node --harmony app.js",
+    "production": "node --harmony app.js --prod",
+    "debug": "node debug app.js",
+    "test": "mocha",
+    "bower-deps": "bower --allow-root install"
+  },
   "dependencies": {
     "@slack/client": "^3.16.0",
     "async": "1.5.0",
@@ -38,7 +46,7 @@
     "mkdirp": "^0.5.5",
     "moment": "^2.25.1",
     "node-cron": "^1.2.1",
-    "node-sass": "^4.13.1",
+    "sass": "^1.55.0",
     "nodemailer": "^4.7.0",
     "nodemailer-mailgun-transport": "^1.4.0",
     "passport": "0.3.0",
@@ -62,14 +70,6 @@
     "mocha": "^5.2.0",
     "should": "7.1.1",
     "supertest": "1.1.0"
-  },
-  "scripts": {
-    "postinstall": "bower --allow-root install",
-    "start": "node --harmony app.js",
-    "production": "node --harmony app.js --prod",
-    "debug": "node debug app.js",
-    "test": "mocha",
-    "bower-deps": "bower --allow-root install"
   },
   "main": "app.js",
   "repository": {

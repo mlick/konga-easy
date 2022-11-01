@@ -1,7 +1,7 @@
 // Paper 3.3.0
 // Variables
 // --------------------------------------------------
-
+@use "sass:math";
 
 @font-face {
   font-family: "Montserrat-Regular";
@@ -371,8 +371,8 @@ $container-lg:                 $container-large-desktop;
 $navbar-height:                    64px;
 $navbar-margin-bottom:             $line-height-computed;
 $navbar-border-radius:             $border-radius-base;
-$navbar-padding-horizontal:        floor(($grid-gutter-width / 2));
-$navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2);
+$navbar-padding-horizontal:        floor(math.div($grid-gutter-width, 2));
+$navbar-padding-vertical:          math.div(($navbar-height - $line-height-computed) , 2);
 $navbar-collapse-max-height:       340px;
 
 $navbar-default-color:             $gray-light;
