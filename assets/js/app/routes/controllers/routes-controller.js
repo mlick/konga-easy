@@ -4,10 +4,10 @@
   angular.module('frontend.routes')
     .controller('RoutesController', [
       '$scope', '$rootScope', '$log', '$state', 'RoutesService', 'ListConfig', 'RouteModel',
-      'UserService', '$uibModal', '_services',
+      'UserService', '$uibModal',
       function controller($scope, $rootScope, $log, $state, RoutesService, ListConfig, RouteModel,
-                          UserService, $uibModal, _services) {
-        $scope.services = _services.data;
+                          UserService, $uibModal) {
+        // $scope.services = _services.data;
         RouteModel.setScope($scope, false, 'items', 'itemCount');
         $scope = angular.extend($scope, angular.copy(ListConfig.getConfig('route', RouteModel)));
         $scope.user = UserService.user()
@@ -67,9 +67,10 @@
           }).then(function (response) {
             // Assign service names
             response.data.forEach(function (route) {
-              var service = _.find($scope.services,function (service) {
-                return service.id === route.service.id
-              });
+              // var service = _.find($scope.services,function (service) {
+              //   return service.id === route.service.id
+              // });
+              var service = {id: route.service.id}
               if(service) {
                 _.set(route,'service',service);
               }
@@ -82,10 +83,10 @@
         }
 
 
-        function onFilteredItemsChanged(routes) {
-
-
-        }
+        // function onFilteredItemsChanged(routes) {
+        //
+        //
+        // }
 
 
         /**
@@ -117,13 +118,23 @@
         // so that the DOM is not overencumbered
         // when dealing with large datasets
 
-        $scope.$watch('filteredItems', function (newValue, oldValue) {
+        // $scope.$watch('filteredItems', function (newValue, oldValue) {
+        //   if (newValue && (JSON.stringify(newValue) !== JSON.stringify(oldValue))) {
+        //     onFilteredItemsChanged(newValue)
+        //   }
+        // })
 
-          if (newValue && (JSON.stringify(newValue) !== JSON.stringify(oldValue))) {
-            onFilteredItemsChanged(newValue)
+        $scope.$watch('filters.searchWord', function (value) {
+          if (value){
+            if (value.startsWith("##")){
+              $scope.filters.exact = true
+              $scope.filters.realSearchWord = value.substr(2)
+            }else {
+              $scope.filters.exact = false
+              $scope.filters.realSearchWord = value
+            }
           }
         })
-
 
         // Init
 

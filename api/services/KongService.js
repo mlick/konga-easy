@@ -156,11 +156,11 @@ var KongService = {
 
     // Always add size=1000 the url just to be sure
     // no more than the needed amount of requests are performed
-    const sizeParam = getParameterByName('size', url);
-    if(!sizeParam)  url += url.indexOf('?') > -1 ? `&size=1000` : `?size=1000`;
 
-    sails.log.debug('KongService: listAllCb', url);
     var getData = function (previousData, url) {
+      const sizeParam = getParameterByName('size', url);
+      if(!sizeParam)  url += url.indexOf('?') > -1 ? `&size=1000` : `?size=1000`;
+      sails.log.debug('KongService: listAllCb', url);
       unirest.get(url)
         .headers(KongService.headers(req, true))
         .end(function (response) {

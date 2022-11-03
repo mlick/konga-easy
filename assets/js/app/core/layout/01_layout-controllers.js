@@ -117,10 +117,7 @@
         $scope.closeDropdown = function () {
           $scope.isOpen = false;
         }
-
-        console.log("FooterController:user =>", $scope.user)
-
-
+        // console.log("FooterController:user =>", $scope.user)
         function _fetchConnections() {
           $http.get('api/kongnode').then(function (response) {
             $scope.connections = response.data;

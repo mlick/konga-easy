@@ -53,15 +53,6 @@
             {
               title: 'name / id',
               column: 'id',
-              width: 100,
-              searchable: true,
-              sortable: true,
-              inSearch: true,
-              inTitle: true
-            },
-            {
-              title: 'tags',
-              column: 'tags',
               searchable: true,
               sortable: true,
               inSearch: true,
@@ -76,6 +67,14 @@
               inTitle: true
             },
             {
+              title: 'paths',
+              column: 'paths',
+              searchable: true,
+              sortable: true,
+              inSearch: true,
+              inTitle: true
+            },
+            {
               title: 'service',
               column: 'service',
               searchable: true,
@@ -84,8 +83,8 @@
               inTitle: true
             },
             {
-              title: 'paths',
-              column: 'paths',
+              title: 'tags',
+              column: 'tags',
               searchable: true,
               sortable: true,
               inSearch: true,
@@ -698,9 +697,9 @@
               itemCount: 0,
               items: [],
               itemsFetchSize: defaultLimit,
-              itemsPerPage: 25,
+              itemsPerPage: 100,
               titleItems: this.getTitleItems(property),
-              itemsPerPageOptions: [10, 25, 50, 100],
+              itemsPerPageOptions: [10, 25, 50, 100, 250, 500, 1000],
               currentPage: 1,
               sort: {
                 column: 'created_at',
@@ -708,6 +707,8 @@
               },
               filters: {
                 searchWord: '',
+                realSearchWord: '',
+                exact: false,
                 columns: this.getTitleItems(property)
               },
               where: {},

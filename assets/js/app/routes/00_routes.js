@@ -28,13 +28,13 @@
                 templateUrl: 'js/app/routes/views/routes.html',
                 controller: 'RoutesController',
                 resolve:{
-                  _services: [
-                    'ServiceModel', 'ListConfig', function resolve(ServiceModel, ListConfig) {
-                      return ServiceModel.load({
-                        size : ListConfig.defaultLimit
-                      })
-                    }
-                  ]
+                  // _services: [
+                  //   'ServiceModel', 'ListConfig', function resolve(ServiceModel, ListConfig) {
+                  //     return ServiceModel.load({
+                  //       size : ListConfig.defaultLimit
+                  //     })
+                  //   }
+                  // ]
                 }
               }
             }

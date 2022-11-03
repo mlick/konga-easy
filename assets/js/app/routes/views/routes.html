@@ -20,9 +20,8 @@
         <div class="table-responsive" >
             <table class="table table-hover table-striped">
                 <tr>
-                    <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'edit')"></th>
-                    <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'edit')"></th>
-                    <th width="1"></th>
+                    <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'edit')">STRIP</th>
+                    <th width="1">RAW</th>
                     <th width="{{item.width}}" class="text-nowrap"
                         data-ng-repeat="item in titleItems | filter:titleFilter"
                     >
@@ -42,11 +41,10 @@
                            data-ng-class="{'mdi-chevron-down': !sort.direction, 'mdi-chevron-up': sort.direction}"
                         ></i>
                     </th>
-                    <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'edit')"></th>
                     <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'delete')"></th>
                 </tr>
                 <tr
-                        dir-paginate="route in items.data | orderBy:sort.column:sort.direction | filter : filters.searchWord | itemsPerPage: itemsPerPage as filteredItems">
+                        dir-paginate="route in items.data | orderBy:sort.column:sort.direction | filter : filters.realSearchWord : filters.exact | itemsPerPage: itemsPerPage as filteredItems">
                     <td ng-if="user.hasPermission($state.name.split('.')[0],'edit')">
 
                         <i
@@ -56,42 +54,29 @@
                                 class="mdi mdi-link-off clickable">
                         </i>
                     </td>
-                    <td ng-if="user.hasPermission($state.name.split('.')[0],'edit')">
-                        <i
-                                uib-tooltip="Preserve Host"
-                                ng-click="route.preserve_host=!route.preserve_host;updateRoute(route.id,{preserve_host : route.preserve_host})"
-                                class="mdi clickable" ng-class="route.preserve_host ? 'mdi-cloud-outline text-primary' : 'mdi-cloud-off-outline text-muted'">
-
-                        </i>
-
-                    </td>
                     <td>
                         <raw-view data-item="route"></raw-view>
                     </td>
-                    <td width="1">
-                        <strong class="no-wrap">
+                    <td>
+                        <strong>
                             <a class="clickable"
                                data-ui-sref="routes.read({route_id:route.id})">{{ route.name || route.id}}</a>
                         </strong>
                     </td>
+                    <td>
+                        <p ng-repeat="host in route.hosts">{{host}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="path in route.paths">{{path}}</p>
+                    </td>
+                    <td><a data-ui-sref="services.read({service_id:route.service.id})">{{route.service.id}}</a></td>
                     <td>
                         <span class="badge badge-tag badge-success badge-inverse" ng-repeat="tag in route.tags">
                             <i class="mdi mdi-tag"></i>&nbsp;
                             {{tag}}
                         </span>
                     </td>
-                    <td>
-                        {{ route.hosts.join(", ") || "-" }}
-                    </td>
-                    <td><a data-ui-sref="services.read({service_id:route.service.id})">{{route.service.name || route.service.id}}</a></td>
-                    <td>{{ route.paths.join(", ") || "-" }}</td>
                     <td>{{route.created_at*1000 | date : format : timezone}}</td>
-                    <td ng-if="user.hasPermission($state.name.split('.')[0],'edit')">
-                        <a class="btn btn-warning btn-link" ui-sref="routes.read({ route_id: route.id })" class="btn btn-default btn-link">
-                            <i class="mdi mdi-pencil"></i>
-                            edit
-                        </a>
-                    </td>
                     <td ng-if="user.hasPermission($state.name.split('.')[0],'delete')">
                         <button type="button" ng-click="deleteItem($index,route)" class="btn btn-danger btn-link">
                             <i class="mdi mdi-delete"></i>
