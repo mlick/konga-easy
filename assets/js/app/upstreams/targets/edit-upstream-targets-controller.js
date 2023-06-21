@@ -12,7 +12,9 @@
       '$log', '$state', 'Upstream', 'MessageService', '$uibModal', 'DataModel', 'ListConfig', '$http', 'DialogService',
       function controller(_,$scope, $rootScope, $stateParams,
                           $log, $state, Upstream, MessageService, $uibModal, DataModel, ListConfig, $http, DialogService) {
-
+        if ($scope.upstream.id){
+          $stateParams.id = $scope.upstream.id
+        }
         var targetsEndpoint = $rootScope.compareKongVersion('0.12.0') >= 0 ? '/targets' : '/targets/active';
         var Target = new DataModel('kong/upstreams/' + $stateParams.id + targetsEndpoint, true)
         Target.setScope($scope, false, 'items', 'itemCount');

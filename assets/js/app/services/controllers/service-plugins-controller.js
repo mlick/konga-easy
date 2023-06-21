@@ -13,6 +13,9 @@
       function controller(_, $scope, $stateParams, $log, $state, ServiceService, PluginsService,
                           $uibModal, DialogService, AuthService) {
 
+        if ($scope.service && $scope.service.id){
+          $stateParams.service_id = $scope.service.id
+        }
 
         $scope.plugins = {
           data: []

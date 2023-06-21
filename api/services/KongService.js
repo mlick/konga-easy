@@ -30,6 +30,8 @@ var KongService = {
       headers = {'Content-Type': 'application/json'}
     }
 
+    headers['apim-admin-access-secret'] = '963a276b4bdb2338c1ea5a7c34917ee7';
+
     // Set required headers according to connection type
     switch (connection.type) {
       case "key_auth":

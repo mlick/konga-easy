@@ -10,12 +10,16 @@ module.exports = function (next) {
 
     switch (process.env.DB_ADAPTER) {
         case("postgres"):
+            console.log("Using postgres...");
             return require("./dbs/pg").run(next);
         case("mysql"):
+            console.log("Using mysql...");
             return require("./dbs/mysql").run(next);
         case("mongo"):
+            console.log("Using mongo...");
             return next();
         case("sqlserver"):
+            console.log("Using sqlserver...");
             return next();
         default:
             console.log("No DB Adapter defined. Using localDB...");

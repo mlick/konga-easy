@@ -7,12 +7,10 @@
   'use strict';
 
   angular.module('frontend.core.models')
-    .factory('DataModel', [
-      '$sailsSocket', '$log',
+    .factory('DataModel', ['$log',
       '_','$rootScope',
       'DataService','MessageService',
-      function(
-        $sailsSocket, $log,
+      function($log,
         _,$rootScope,
         DataService,MessageService
       ) {
@@ -69,7 +67,7 @@
           self.endpoint = endpoint;
 
           // Subscribe to specified endpoint
-          self._subscribe();
+          // self._subscribe();
         };
 
         /**
@@ -442,13 +440,14 @@
             // $log.log('Subscribing to => ' + self.endpoint.replace('api/',''))
 
           // Actual subscribe
-          $sailsSocket
-            .subscribe(self.endpoint.replace('api/',''), function modelEvent(message) {
+          // $sailsSocket
+          //   .subscribe(self.endpoint.replace('api/',''), function modelEvent(message) {
+          //
+          //     // Handle socket event
+          //     self._handleEvent(message);
+          //   })
+          // ;
 
-              // Handle socket event
-              self._handleEvent(message);
-            })
-          ;
         };
 
         /**

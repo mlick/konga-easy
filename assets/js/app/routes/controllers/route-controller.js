@@ -8,12 +8,25 @@
 
   angular.module('frontend.routes')
     .controller('RouteController', [
-      '$scope', '$rootScope', '$state', 'SettingsService', '$log', '_route',
-      function controller($scope, $rootScope, $state, SettingsService, $log, _route) {
+      '$scope', '$rootScope', '$state', 'SettingsService','RoutesService', '$log', '_route','_service',
+      function controller($scope, $rootScope, $state, SettingsService, RoutesService, $log, _route, _service) {
 
         console.log("RouteController loaded");
 
         $scope.route = _route.data
+        if (_service) {
+            $scope.service = _service.data
+        }
+
+        var upstreamName = $scope.service.host
+        console.log("RouteController upstreamName: ", upstreamName);
+
+        RoutesService.findUpstreamsByName(upstreamName)
+            .then(function (res) {
+                console.log("RouteController upstream Data: ", res);
+                $scope.upstream = res.data
+                console.log("RouteController upstream id: ", $scope.upstream.id);
+            })
 
         // Fix empty object properties
         fixProperties()
@@ -27,17 +40,36 @@
             isVisible: true
           },
           {
-            name: 'Plugins',
+            name: 'Service Details',
+            icon: 'mdi mdi-directions-fork',
+            isVisible: true
+          },
+          {
+            name: 'Upstream Details',
+            icon: 'mdi mdi-access-point',
+            isVisible: true
+          },
+          {
+            name: 'Target Details',
+            icon: 'mdi mdi-target',
+            isVisible: true
+          },
+          {
+            name: 'Route Plugins',
+            icon: 'mdi mdi-power-plug',
+            isVisible: true
+          },
+          {
+            name: 'Service Plugins',
             icon: 'mdi mdi-power-plug',
             isVisible: true
           },
           {
             name: 'Eligible consumers <span class="label label-danger">beta</span>',
             icon: 'mdi mdi-account-multiple-outline',
-            isVisible: true
+            isVisible: false
           },
         ]
-
 
         $scope.showSection = function (index) {
           $scope.activeSection = index

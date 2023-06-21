@@ -19,7 +19,7 @@
             '$log','$rootScope','AuthService',
             function factory($log,$rootScope,AuthService) {
 
-                var hasSubscribed = false;
+                var hasSubscribed = true;
 
                 function _subscribe() {
 

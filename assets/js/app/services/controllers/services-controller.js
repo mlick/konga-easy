@@ -81,7 +81,7 @@
             size: $scope.itemsFetchSize
           }).then(function (response) {
             $scope.items = response;
-            console.log("Services =>", $scope.items);
+            // console.log("Services =>", $scope.items);
             $scope.loading = false;
           })
 

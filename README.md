@@ -1,9 +1,18 @@
 # New Change
 ## Features
 * Change Node-Saas -> Dart-Saas
+* Change protocols WebSocket -> Http
+* Add Service and Upstream detail Page in The Routes Page 
+* Add assets for bower_components static files  
 * Remove Routes Model pull All Service
 * Support Search Exact Route By '##' Start With
 * etc.
+
+## Dependency Package 
+only run this order
+```shell
+npm installs
+```
 
 ## More than just another GUI to [KONG Admin API](http://getkong.org)    [![Build Status](https://travis-ci.org/pantsel/konga.svg?branch=master)](https://travis-ci.org/pantsel/konga)    [![Gitter chat](https://badges.gitter.im/pantsel-konga/Lobby.png)](https://gitter.im/pantsel-konga/Lobby)
 
@@ -46,11 +55,11 @@ If you need to discuss anything Konga related, we have a chatroom on Gitter:
 ## Compatibility
 **From 0.14.0 onwards, Konga is ONLY compatible with Kong 1.x**
 
-If you're on an older Kong version , use [this](https://github.com/pantsel/konga/tree/legacy) branch 
+If you're on an older Kong version , use [this](https://github.com/pantsel/konga/tree/legacy) branch
 or `konga:legacy` from docker hub instead.
 
 ## Prerequisites
-- A running [Kong installation](https://getkong.org/) 
+- A running [Kong installation](https://getkong.org/)
 - Nodejs >= 8, <= 12.x (12.16 LTS is recommended)
 - Npm
 
@@ -122,7 +131,7 @@ The application also supports some of the most popular databases out of the box:
 3. PostgresSQL
 
 In order to use them, set the appropriate env vars in your `.env` file.
- 
+
 
 ## Running Konga
 
@@ -137,15 +146,15 @@ Konga GUI will be available at `http://localhost:1337`
 ***************************************************************************************** 
 In case of `MySQL` or `PostgresSQL` adapters, Konga will not perform db migrations when running in production mode.
 
-You can manually perform the migrations by calling ```$ node ./bin/konga.js  prepare``` 
+You can manually perform the migrations by calling ```$ node ./bin/konga.js  prepare```
 , passing the args needed for the database connectivity.
 
-For example: 
+For example:
 
 ```
 $ node ./bin/konga.js  prepare --adapter postgres --uri postgresql://localhost:5432/konga
 ```
-The process will exit after all migrations are completed. 
+The process will exit after all migrations are completed.
 
 *****************************************************************************************
 
@@ -255,7 +264,7 @@ See issue [#48](https://github.com/pantsel/konga/issues/48) for reference.
 
 ##### 3. EACCES permission denied, mkdir '/kongadata/'.
 If you see this error while trying to run Konga, it means that konga has no write permissions to
-it's default data dir `/kongadata`.  You will just have to define the storage path yourself to 
+it's default data dir `/kongadata`.  You will just have to define the storage path yourself to
 a directory Konga will have access permissions via the env var `STORAGE_PATH`.
 
 ##### 4. The hook `grunt` is taking too long to load

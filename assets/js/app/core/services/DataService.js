@@ -9,12 +9,10 @@
   'use strict';
 
   angular.module('frontend.core.services')
-    .factory('DataService', [
-      '$sailsSocket','$http',
+    .factory('DataService', ['$http',
       '_',
       'BackendConfig',
-      function factory(
-        $sailsSocket,$http,
+      function factory($http,
         _,
         BackendConfig
       ) {
@@ -59,7 +57,7 @@
            * @returns {Promise|*}
            */
           count: function count(endPoint, parameters) {
-            return $sailsSocket
+            return $http
               .get(_parseEndPointUrl(endPoint) + '/count/', _parseParameters(parameters));
           },
 
@@ -73,8 +71,8 @@
            * @returns {Promise|*}
            */
           collection: function collection(endPoint, parameters) {
-            return $sailsSocket
-              .get(_parseEndPointUrl(endPoint), _parseParameters(parameters));
+            return $http
+                .get(_parseEndPointUrl(endPoint),_parseParameters(parameters));
           },
 
           /**
@@ -88,13 +86,13 @@
            * @returns {Promise|*}
            */
           fetch: function fetch(endPoint, identifier, parameters) {
-            return $sailsSocket
+            return $http
               .get(_parseEndPointUrl(endPoint, identifier), _parseParameters(parameters));
           },
 
 
           get: function get(endPoint, parameters) {
-            return $sailsSocket
+            return $http
               .get(_parseEndPointUrl(endPoint), _parseParameters(parameters));
           },
 
@@ -107,7 +105,7 @@
            * @returns {Promise|*}
            */
           create: function create(endPoint, data) {
-            return $sailsSocket
+            return $http
               .post(_parseEndPointUrl(endPoint), data);
           },
 
@@ -121,7 +119,7 @@
            * @returns {Promise|*}
            */
           update: function update(endPoint, identifier, data) {
-            return $sailsSocket
+            return $http
               .put(_parseEndPointUrl(endPoint, identifier), data);
           },
 
@@ -141,7 +139,7 @@
            * @returns {Promise|*}
            */
           delete: function remove(endPoint, identifier) {
-            return $sailsSocket
+            return $http
               .delete(_parseEndPointUrl(endPoint, identifier));
           }
         };

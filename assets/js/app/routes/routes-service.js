@@ -77,6 +77,12 @@
           findById: function (routeId) {
             return $http.get('kong/routes/' + routeId)
           },
+          findServiceByRouteId: function (routeId) {
+            return $http.get('kong/routes/' + routeId + "/service")
+          },
+          findUpstreamsByName: function (name) {
+            return $http.get('kong/upstreams/' + name)
+          },
 
           update: function (routeId, data) {
             return $http.patch('kong/routes/' + routeId, data)

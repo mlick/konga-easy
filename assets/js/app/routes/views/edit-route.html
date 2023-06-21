@@ -17,7 +17,11 @@
     </div>
     <div class="col-md-9">
         <div data-ui-view="details" ng-if="activeSection == 0"></div>
-        <div data-ui-view="plugins" ng-if="activeSection == 1"></div>
-        <div data-ui-view="consumers" ng-if="activeSection == 2"></div>
+        <div data-ui-view="details2" ng-if="activeSection == 1"></div>
+        <div data-ui-view="upstream" ng-if="activeSection == 2"></div>
+        <div data-ui-view="target" ng-if="activeSection == 3"></div>
+        <div data-ui-view="plugins" ng-if="activeSection == 4"></div>
+        <div data-ui-view="plugins2" ng-if="activeSection == 5"></div>
+        <div data-ui-view="consumers" ng-if="activeSection == 6"></div>
     </div>
 </div>

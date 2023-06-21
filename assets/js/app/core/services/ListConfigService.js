@@ -697,7 +697,7 @@
               itemCount: 0,
               items: [],
               itemsFetchSize: defaultLimit,
-              itemsPerPage: 100,
+              itemsPerPage: 25,
               titleItems: this.getTitleItems(property),
               itemsPerPageOptions: [10, 25, 50, 100, 250, 500, 1000],
               currentPage: 1,
